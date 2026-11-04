@@ -4,34 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conversor de Divisas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            min-height: 100vh;
+            padding: 1rem;
+            background: linear-gradient(135deg, #171b3d, #5146e5);
+            font-family: "Manrope", "Segoe UI", sans-serif;
         }
         .converter-card {
+            width: min(100%, 400px);
+            border: 0;
             border-radius: 20px;
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.95);
+            background: #fff;
+        }
+        h2 {
+            color: #171b3d;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+        }
+        .form-label {
+            color: #343a5c;
+            font-weight: 600;
+        }
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #5146e5;
+            box-shadow: 0 0 0 0.2rem rgba(81, 70, 229, 0.2);
+        }
+        .btn-primary {
+            border-color: #5146e5;
+            background: #5146e5;
+        }
+        .btn-primary:hover {
+            border-color: #3e35bd;
+            background: #3e35bd;
         }
         .result-box {
+            color: #23845d;
             font-size: 1.5rem;
-            font-weight: bold;
-            color: #198754;
+            font-weight: 700;
+        }
+        @media (max-width: 380px) {
+            .row > .col.text-center {
+                width: 100%;
+                margin: 0.25rem 0;
+            }
         }
     </style>
 </head>
 
-<body class="d-flex justify-content-center align-items-center vh-100">
-
-    <div class="card shadow-lg p-4 converter-card" style="width: 400px;">
+<body class="d-flex justify-content-center align-items-center">
+    <div class="card shadow-lg p-4 converter-card">
         <h2 class="text-center mb-4">💱 Conversor de Divisas</h2>
 
         <form method="post">
             <div class="mb-3">
                 <label class="form-label">Cantidad</label>
-                <input type="number" step="0.01" name="amount" 
-                       class="form-control form-control-lg" 
+                <input type="number" step="0.01" name="amount"
+                       class="form-control form-control-lg"
                        placeholder="Introduce cantidad" required>
             </div>
 
@@ -43,9 +77,7 @@
                         <option value="GBP">GBP £</option>
                     </select>
                 </div>
-                <div class="col text-center align-self-center">
-                    →
-                </div>
+                <div class="col text-center align-self-center">→</div>
                 <div class="col">
                     <select name="to_currency" class="form-select">
                         <option value="USD">USD $</option>
@@ -56,18 +88,13 @@
             </div>
 
             <div class="d-grid">
-                <button type="submit" class="btn btn-primary btn-lg">
-                    Convertir
-                </button>
+                <button type="submit" class="btn btn-primary btn-lg">Convertir</button>
             </div>
         </form>
 
         {% if result is not none %}
-            <div class="mt-4 text-center result-box">
-                {{ result }}
-            </div>
+            <div class="mt-4 text-center result-box">{{ result }}</div>
         {% endif %}
     </div>
-
 </body>
 </html>
